@@ -1,0 +1,8 @@
+[core]
+    remote = storage
+['remote "storage"']
+    url = gs://mi-proyecto-dvc-fb1cc.appspot.com
+['remote "model-tracker"']
+    url = gs://mi-proyecto-dvc-fb1cc.appspot.com/models
+['remote "dataset-track"']
+    url = gs://mi-proyecto-dvc-fb1cc.appspot.com/dataset
