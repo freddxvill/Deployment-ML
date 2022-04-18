@@ -1,5 +1,3 @@
-import imp
-from h11 import Data
 from joblib import load
 from sklearn.pipeline import Pipeline
 from pydantic import BaseModel

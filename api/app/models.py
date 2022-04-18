@@ -1,4 +1,3 @@
-from turtle import screensize
 from pydantic import BaseModel
 
 class PredictionRequest(BaseModel):
