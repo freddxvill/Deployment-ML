@@ -1,0 +1,30 @@
+name: Continuous Integration/Continuous Deployment
+on: [push]
+jobs:
+  ci_cd:
+    runs-on: ubuntu-latest
+    env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+          HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
+          SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY}}
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      - name: Set environment and bring the model
+        run: |
+          pip3 install virtualenv
+          virtualenv venv
+          source venv/bin/activate
+          pip install dvc[gs]
+          export GOOGLE_APPLICATION_CREDENTIALS=$(python utilities/setter.py)
+          dvc pull model/model.pkl.dvc -r model-tracker
+      - name: Set up Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
+          
+      
+
