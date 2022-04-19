@@ -40,7 +40,7 @@ jobs:
           git commit -m "Updating model serialization"
       - uses: ad-m/github-push-action@master
         width:
-            github_token: ${{ secretS.GITHUB_TOKEN }}
+            github_token: ${{ secrets.GITHUB_TOKEN }}
             branch: ${{ github.ref }}
       - uses: iterative/setup-cml@v1
       - name: Push metrics
