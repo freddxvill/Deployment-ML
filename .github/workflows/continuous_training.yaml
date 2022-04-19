@@ -13,7 +13,7 @@ on:
         default: running CT
 jobs:
   continuous_training:
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
@@ -39,7 +39,7 @@ jobs:
           git add model/model.pkl.dvc
           git commit -m "Updating model serialization"
       - uses: ad-m/github-push-action@master
-        width:
+        with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
             branch: ${{ github.ref }}
       - uses: iterative/setup-cml@v1
@@ -49,5 +49,5 @@ jobs:
         run: |
           cat report.txt >> report.md
           cml-publish prediction_behavior.png --md >> report.md
-          cml-send-comment report 
+          cml-send-comment report.md 
 
