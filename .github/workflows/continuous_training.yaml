@@ -20,7 +20,7 @@ jobs:
       - name: Train_model
         env:
           SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY}}
-        runs: |
+        run: |
            pip3 install virtualenv
            virtualenv venv
            source venv/bin/activate
