@@ -11,7 +11,7 @@ jobs:
       - name: Creating and activating virtualenv
         run: |
           pip3 install virtualenv
-          virtual venv
+          virtualenv venv
           source venv/bin/acivate
       - name: Installing dependencies
         run: |
