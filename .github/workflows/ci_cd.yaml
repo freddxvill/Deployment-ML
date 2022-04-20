@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
+      - run: |
+          git fetch --prune --unshallow  
       - name: Set environment and bring the model
         run: |
           pip3 install virtualenv
@@ -25,6 +27,11 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "ml-movie-prediction"
           heroku_email: "freddyvillcavillegas18@gmail.com"
+      - name: Add remote origin
+        if: github.ref == 'refs/heads/main' && job.status == 'success'
+        run: |
+          git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
+          git push heroku HEAD: main -f
       
       
 
