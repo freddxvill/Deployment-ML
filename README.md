@@ -1,5 +1,5 @@
-Deployment ML Model
-===============
+# Deployment ML Model
+
 In this project we deploy an API of a machine learning model that predicts the worldwide gross expected from a movie. 
 - The API was created using **FastAPI**.
 - **DVC** is also implemented for data tracking and firebase is used as storage.
